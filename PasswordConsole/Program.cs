@@ -13,6 +13,10 @@ int intentos = 0;
 // variable para alojar el valor de respuesta del usuario
 string respuesta;
 
+// variable para manejar el valor de respuesta correcta o incorrecta
+bool contraseñaCorrecta = false; 
+
+
 while ( intentos < intentosPermitidos )
 {
     if ( intentos == 0 )
@@ -36,29 +40,31 @@ while ( intentos < intentosPermitidos )
     {
         if (respuesta.Equals(passwordCorrecta))
         {
-            Console.WriteLine();
-            Console.WriteLine("La contraseña es correcta. Acceso permitido.");
             intentos = intentosPermitidos;
+            contraseñaCorrecta = true;
         }
         else
         {
-
-            intentos++;
-                       
-            // Si se alcanzó el número máximo de intentos
-            if (intentos == intentosPermitidos)
-            {
-                Console.WriteLine();
-                Console.WriteLine("No es posible acceder al sistema. El sistema se cerrará.");
-            }
-            else
-            {
-                
-                Console.WriteLine("La contraseña es incorrecta, intente nuevamente...");
-                Console.WriteLine();
-            }
-
+            intentos++;                                      
+            Console.WriteLine("La contraseña es incorrecta, intente nuevamente...");
+            Console.WriteLine();
+          
         }
      }
 }
 
+            // Si se alcanzó el número máximo de intentos
+if (intentos == intentosPermitidos)
+{
+    if (contraseñaCorrecta)
+    {
+        Console.WriteLine();
+        Console.WriteLine("La contraseña es correcta. Acceso permitido.");
+    }
+    else
+    {
+        Console.WriteLine();
+        Console.WriteLine("No es posible acceder al sistema. El sistema se cerrará.");
+    }
+
+}
